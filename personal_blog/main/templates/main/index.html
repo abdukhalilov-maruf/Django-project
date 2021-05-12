@@ -1,0 +1,92 @@
+{% extends "main/base.html" %}
+{% load static %}
+                {% block title %}Персоналный блог{% endblock %}
+
+
+
+                {% block content %}
+
+                <div class="stories">
+                    <div class="stories_item">
+                        <img class="stories_img" src="{% static 'images/stories_1.jpg' %}" alt="">
+                        <div class="stories_title">Отдыхаю на природе</div>
+                        <time class="stories_date" datetime="2021-03-26 16:47">26.03.2021</time>
+                    </div>
+                    <div class="stories_item">
+                        <img class="stories_img" src="{% static 'images/stories_2.jpg' %}" alt="">
+                        <div class="stories_title">Заканчиваю
+                            сложный проект</div>
+                        <time class="stories_date" datetime="2021-03-26 16:47">26.03.2021</time>
+                    </div>
+                    <div class="stories_item">
+                        <img class="stories_img" src="{% static 'images/stories_3.jpg' %}" alt="">
+                        <div class="stories_title">Переехал в новую
+                            квартиру</div>
+                        <time class="stories_date" datetime="2021-03-26 16:47">26.03.2021</time>
+                    </div>
+                    <div class="stories_item">
+                        <img class="stories_img" src="{% static 'images/stories_4.jpg' %}" alt="">
+                        <div class="stories_title">Осень пришла!</div>
+                        <time class="stories_date" datetime="2021-03-26 16:47">26.03.2021</time>
+                    </div>
+
+                </div><!-- /stories -->
+                <div class="add_post">
+                    <form class="add_post_form" action="/" method="POST">
+                    <textarea class="add_post_textarea" name="post-text" placeholder="Напишите что нибудь"></textarea>
+                
+                    <div class="add_post_actions">
+                        <label class="add_post_file" for="add_post_file">
+                            <input type="file" id="add_post_file">
+                        </label>
+                        <button class="send_btn" type="submit"></button>
+                    </div>
+                </form>
+                </div><!-- /.add_post -->
+
+                {% for element in page_obj %}
+                <article class="post">
+                    <div class="post_header">
+                        <a href="{{ element.id }}"><img class="post_img" src="{{ element.img }}" alt=""></a>
+                    </div>
+                    <div class="post_content">
+                        <h2><a class="post_title"a href="{{ element.id }}">{{ element.title }}</a></h2>
+                        <p>{{ element.text|safe }}</p>
+                    </div>
+                    <div class="post_footer">
+                        <ul class="post_data">
+                            <li class="post_data_item">
+                                <time datetime="2021-03-26 19:47">{{ element.date }}</time>
+                            </li>
+                            <li class="post_data_item">
+                                <a href="#">{{ element.category }}</a>
+                            </li>
+                        </ul>
+                        <a href="{{ element.id }}" class="post_read">Читать</a>
+                    </div>
+                </article><!-- /.post -->
+                {% endfor %}
+
+
+                
+                {% if page_obj.has_other_pages %}
+                <div class="pagenation">
+                    <ul class="pagenation_list">
+                        {% for p in page_obj.paginator.page_range %}
+                            {% if page_obj.number == p %}
+                                <a class="pagenation_item active" href="?page={{p}}"><li>{{p}}</li></a>
+                            {% else %}
+                                <a class="pagenation_item" href="?page={{p}}"><li>{{p}}</li></a>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+
+
+
+            {% endblock %}
+
+
+
+

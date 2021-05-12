@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
+
+    <!-- Useful meta tags -->
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9, shrink-to-fit=no">
+    <meta name="robots" content="index, follow">
+    <meta name="google" content="notranslate">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="description" content="">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="page">
+        <!-- header -->
+        <header class="header">
+            <div class="header_left">
+                <nav class="nav">
+                    <ul class="nav_list">
+                        <li class="nav_item">
+                            <a class="nav_link" href="{% url 'index' %}">Главная</a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link has-subnav" href="#">Статьи</a>
+
+                            <ul class="subnav">
+                                <li>
+                                    <a class="subnav_link" href="#">Создание сайтов</a>
+                                </li>
+                                <li>
+                                    <a class="subnav_link" href="#">Интернет-маркетинг</a>
+                                </li>
+                                <li>
+                                    <a class="subnav_link" href="#">Продвижение видео</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="#">Обо мне</a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="#">Реклама</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+            <div class="header_rigth">
+                <nav class="nav">
+                    <ul class="nav_list">
+                        <li class="nav_item">
+                            <a class="nav_link" href="#">Профиль</a>
+                        </li>
+                        <li class="nav_item">
+                            <a class="nav_link" href="#">Выйти</a>
+                        </li>
+                    </ul>
+                    <form class="nav_search" action="/" method="POST">
+                    <input type="text" placeholder="Поиск по блогу"></form>
+                </nav>
+            </div>
+        </header>
+        <!-- sidebar -->
+
+        <aside class="sidebar">
+            <div class="sidebar_header"><img src="{% static 'images/sidebar_header.jpg' %}" alt=""></div>
+
+            <div class="sidebar_content">
+                <div class="profile">
+                    <img class="profile_avatar" src="{% static 'images/profile_avatar.jpg' %}" alt="">
+                    <div class="profile_name">Maruf Abdukhalilov</div>
+                    <div class="profile_prof">блог back-end разработчика</div>
+                </div>
+
+                <ul class="social">
+                    <li class="social_item">
+                        <a class="social_link" href="#" target="_blank">
+                            <img src="{% static 'images/instagram.svg' %}" alt="instagram">
+                        </a>
+                    </li>
+                    <li class="social_item">
+                        <a class="social_link" href="#" target="_blank">
+                            <img src="{% static 'images/vk.svg' %}" alt="instagram">
+                        </a>
+                    </li>
+                    <li class="social_item">
+                        <a class="social_link" href="#" target="_blank">
+                            <img src="{% static 'images/pinterest.svg' %}" alt="instagram">
+                        </a>
+                    </li>
+                </ul>
+                <div class="profile_text">
+                    <p>Back-end разработчик. Практик верстки сайтов.
+        
+                        Созданием сайтов занимаюсь с 2020 года. Работал в нескольких ИТ компаниях и наработал более 10 000 часов в создании сайтов различной сложности.</p>
+                </div>
+            </div>
+
+            <div class="sidebar_footer">
+                <button class="btn btn--red" type="button">Написать мне</button>
+                <a href="{% url 'works' %}" class="btn btn--blue">Мои работы</a>
+            </div>
+            <div class="sidebar_telegram_qr">
+                <a href="https://t.me/marufabdukhalilov" target="_blank"><img class="qr_telegram" src="{% static 'images/telegram.png' %}" alt="" class="qr_code"></a>
+                <a style="text-decoration:none; color: white;" href="https://t.me/marufabdukhalilov" target="_blank">
+                    <div class="sidebar_telegram_content">
+                    <img src="{% static 'images/telegram_icon.jpg' %}" alt="" class="avatar">
+                    <h4>𝕬𝖇𝖉𝖚𝖐𝖍𝖆𝖑𝖎𝖑𝖔𝖛 𝕸</h4>
+                </div></a>
+            </div>
+        </aside>
+        <!-- main -->
+        <main class="main">
+            <div class="container">
+                {% block content %}
+
+                {% endblock %}
+            </div><!-- /.container -->
+        </main>
+
+    </div>
+
+    
+    <div class="modal">
+        <div class="modal_content">
+            <input type="text" class="modal_input" placeholder="Ваеш имя">
+            <input type="text" class="modal_input" placeholder="Ваш E-mail">
+            <input type="text" class="modal_input" placeholder="Текст сообщения"><br>
+            <button class="btn btn--modal_btn" type="submit">Отправить</button>
+            <button class="modal_close" type="button">
+                <img src="{% static 'images/close.svg' %}" alt="Закрыть">
+            </button>
+    
+            <ul class="modal_footer">
+                <li>E-mail:<a href="mailto:ingo@mywebsite.uz">info@website.uz</a></li>
+                <li>Tel: <a href="tel:+998888781197">+998888781197</a></a></li> 
+            </ul>
+        </div>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>
